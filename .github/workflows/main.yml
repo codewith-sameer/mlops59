@@ -48,5 +48,5 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker tag ml_project:latest ${{ secrets.DOCKER_USERNAME }}/ml_project:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/ml_project:latest
+          docker tag assignment1:latest ${{ secrets.DOCKER_USERNAME }}/assignment1:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/assignment1:latest

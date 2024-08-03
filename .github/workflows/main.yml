@@ -56,7 +56,12 @@ jobs:
       - name: Build Docker image
         run: docker build -t ml_project .
 
+      - name: Tag Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker tag ml_project:latest ${DOCKER_USERNAME}/ml_project:latest
+
       - name: Push Docker image
-        run: |
-          docker tag ml_project:latest ${{ secrets.DOCKER_USERNAME }}/ml_project:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/ml_project:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: docker push ${DOCKER_USERNAME}/ml_project:latest

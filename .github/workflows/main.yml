@@ -55,6 +55,12 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 
+      - name: Build & Push Image
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "codewithsameer" --password-stdin
+          docker image build -t codewithsameer/mlops59:latest .
+          docker push codewithsameer/mlops59:latest
+
       - name: Build & push Docker image
         run: docker build -t mlops59 .
              docker push mlops59:latest

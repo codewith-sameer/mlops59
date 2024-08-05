@@ -60,3 +60,19 @@ jobs:
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "codewithsameer" --password-stdin
           docker image build -t codewithsameer/mlops59:latest .
           docker push codewithsameer/mlops59:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Docker Compose
+        run: sudo apt-get install docker-compose -y
+
+      - name: Deploy Containers
+        run: |
+          docker-compose down
+          docker-compose up -d

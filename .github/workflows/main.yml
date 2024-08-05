@@ -57,4 +57,4 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t mlops59 .
-
+             docker push mlops59:latest
